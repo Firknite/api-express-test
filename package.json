@@ -17,6 +17,7 @@
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
+    "axios": "^0.26.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -41,7 +42,7 @@
       "*.spec.js"
     ]
   },
-  "jest": { 
+  "jest": {
     "testEnvironment": "node"
   },
   "devDependencies": {
