@@ -1,7 +1,8 @@
 import express from "express";
-import { join } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 import principalRouting from "./routes/index";
 
@@ -11,6 +12,5 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(join(__dirname, "../public")));
 
 export default app;

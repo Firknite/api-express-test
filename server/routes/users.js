@@ -1,9 +1,11 @@
-import express from 'express';
-const router = express.Router();
+import { getUser } from "../controllers/user.controller";
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+export default function usersRouting(router) {
+  
+  router.get("/", async function (req, res) {
+    const { data } = await getUser(req);
+    res.send(data).status(200);
+  });
 
-export default router;
+  return router;
+}
