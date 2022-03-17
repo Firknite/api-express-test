@@ -1,9 +1,13 @@
-import express from "express";
-const router = express.Router();
+import usersRouter from "./users";
 
-/* GET home page. */
-router.get("/", (req, res, next) => {
-  res.status(200).send("Hola buenas tardes");
-});
+export default function principalRouting(express) {
+  const app = express();
 
-export default router;
+  app.use("/health", (req, res) =>
+    res.status(200).send("The application is healthy!")
+  );
+
+  app.use(usersRouter);
+
+  return app;
+}

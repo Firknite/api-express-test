@@ -1,20 +1,16 @@
-import express from 'express';
-import { join } from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import express from "express";
+import { join } from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
 
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+import principalRouting from "./routes/index";
 
-var app = express();
+var app = principalRouting(express);
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(join(__dirname, '../public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(express.static(join(__dirname, "../public")));
 
 export default app;
