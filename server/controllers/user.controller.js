@@ -1,6 +1,7 @@
-import axiosService from "../services/axios.service";
+import axiosService from '../services/axios.service'
 
-export function getUser(req) {
-  const baseUrl = "https://jsonplaceholder.typicode.com/users";
-  return axiosService.get(baseUrl);;
+export function getUser(params = '') {
+    const baseUrl = 'https://jsonplaceholder.typicode.com/users'
+    const temp = `/${params}`
+    return axiosService.get(baseUrl, temp)
 }
