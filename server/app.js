@@ -1,16 +1,16 @@
-import express from 'express'
-import cookieParser from 'cookie-parser'
-import logger from 'morgan'
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
-import principalRouting from './routes/index'
+import routes from './routes/index';
 
-var app = principalRouting(express)
+const app = express();
 
-app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
+app.use(routes);
+app.use(express.json());
+app.use(logger('dev'));
+app.use(cookieParser());
 
-export default app
+export default app;

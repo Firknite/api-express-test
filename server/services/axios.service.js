@@ -4,7 +4,7 @@ export default {
     get: (url, params = '') => {
         return axios.get(`${url}${params}`)
     },
-    post: (url, body, token) => {
+    post: (url, body, token = '') => {
         if (token != '') {
             return axios.post(url, body, {
                 headers: { 'x-secret-token': token },
