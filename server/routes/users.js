@@ -1,38 +1,38 @@
-import { getUser, addUser } from '../controllers/user.controller'
+import {
+    getUser,
+    addUser,
+    updateUser,
+    deleteUser,
+} from '../controllers/user.controller';
 
 export default function usersRouting(router) {
-    router.get('/:id?', async function (req, res) {
-        const { data } = await getUser(req.query.id)
-        res.send(data).status(200)
-    })
+    router.get('/:id?', async (req, res) => {
+        const { data } = await getUser(req.query.id);
+        res.send(data).status(200);
+    });
 
     router.post('/', async function (req, res) {
-        // const dataMock = {
-        //     "id": 11,
-        //     "name": "Nicolas Herrera",
-        //     "username": "Enemyers",
-        //     "email": "enemyers@hotmail.cl",
-        //     "address": {
-        //         "street": "Lomas Turbas 6969",
-        //         "suite": "shorter",
-        //         "city": "Santiago",
-        //         "zipcode": "99999-1111",
-        //         "geo": {
-        //             "lat": "-40.3159",
-        //             "lng": "36.1496"
-        //         }
-        //     },
-        //     "phone": "+56912345678",
-        //     "website": "myers.org",
-        //     "company": {
-        //         "name": "cuatro I",
-        //         "catchPhrase": "",
-        //         "bs": ""
-        //     }
-        // }
-        const { data } = await addUser(req.body.user)
-        res.send(data).status(200)
-    })
+        const { data } = await addUser(req.body.user);
+        res.send(data).status(201);
+    });
 
-    return router
+    router.put('/', async (req, res) => {
+        const { data } = await updateUser(req.body.user);
+        res.send(data).status(204);
+    });
+
+    router.delete('/:id', async (req, res) => {
+        try {
+            if (req.query.id) {
+                await deleteUser(req.query.id);
+                res.send({ message: 'delete successfull' }).status(200);
+            } else {
+                res.send({ message: 'param id is required' }).status(403);
+            }
+        } catch (error) {
+            res.send(error).status(502);
+        }
+    });
+
+    return router;
 }
