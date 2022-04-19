@@ -3,11 +3,18 @@ import {
     addUser,
     updateUser,
     deleteUser,
+    userHandlers,
 } from '../controllers/user.controller';
+
+import axiosService from '../services/axios.service';
 
 export default function usersRouting(router) {
     router.get('/:id?', async (req, res) => {
-        const { data } = await getUser(req.query.id);
+        const baseUrl = 'https://jsonplaceholder.typicode.com/users';
+        const { data } = await userHandlers(axiosService).getUser(
+            baseUrl,
+            req.query.id
+        );
         res.send(data).status(200);
     });
 

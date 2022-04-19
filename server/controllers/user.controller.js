@@ -18,3 +18,10 @@ export function updateUser(body, token = '') {
 export function deleteUser(id) {
     return axiosService.delete(baseUrl, `/${id}`);
 }
+
+export const userHandlers = (axiosService) => ({
+    getUser: (baseUrl, params = '') => {
+        const temp = `/${params}`;
+        return axiosService.get(baseUrl, temp);
+    },
+});

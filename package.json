@@ -1,60 +1,64 @@
 {
-  "name": "api-express-test",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "build": "npm-run-all clean transpile",
-    "transpile": "babel ./server --out-dir dist-server",
-    "clean": "rm -rf dist-server",
-    "server": "node ./dist-server/bin/www",
-    "start": "npm run prod",
-    "dev": "NODE_ENV=development npm-run-all build server",
-    "prod": "NODE_ENV=production npm-run-all build server",
-    "watch:dev": "nodemon",
-    "test": "jest",
-    "prettier:fix": "prettier --write server/**/*.{js,json}"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.7",
-    "@babel/preset-env": "^7.16.11",
-    "axios": "^0.26.1",
-    "cookie-parser": "~1.4.4",
-    "core-js": "^3.21.1",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "morgan": "~1.9.1",
-    "nodemon": "^2.0.15",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.6.0",
-    "regenerator-runtime": "^0.13.9"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
-  "nodemonConfig": {
-    "exec": "npm run dev",
-    "watch": [
-      "server/*",
-      "public/*"
-    ],
-    "ignore": [
-      "**/__tests__/**",
-      "*.test.js",
-      "*.spec.js"
-    ]
-  },
-  "jest": {
-    "testEnvironment": "node"
-  },
-  "devDependencies": {
-    "jest": "^27.5.1"
-  },
-  "prettier": {
-    "tabWidth": 4,
-    "semi": true,
-    "singleQuote": true
-  }
+    "name": "api-express-test",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "npm-run-all clean transpile",
+        "transpile": "babel ./server --out-dir dist-server",
+        "clean": "rm -rf dist-server",
+        "server": "node ./dist-server/bin/www",
+        "start": "npm run prod",
+        "dev": "NODE_ENV=development npm-run-all build server",
+        "prod": "NODE_ENV=production npm-run-all build server",
+        "watch:dev": "nodemon",
+        "test": "jest --watch",
+        "prettier:fix": "prettier --write server/**/*.js server/**/*.json __test__/**/*.spec.js"
+    },
+    "dependencies": {
+        "@babel/cli": "^7.17.6",
+        "@babel/core": "^7.17.7",
+        "@babel/preset-env": "^7.16.11",
+        "axios": "^0.26.1",
+        "cookie-parser": "~1.4.4",
+        "core-js": "^3.21.1",
+        "debug": "~2.6.9",
+        "express": "~4.16.1",
+        "morgan": "~1.9.1",
+        "nodemon": "^2.0.15",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.6.0",
+        "regenerator-runtime": "^0.13.9"
+    },
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ],
+        "targets": {
+            "node": "current"
+        }
+    },
+    "nodemonConfig": {
+        "exec": "npm run dev",
+        "watch": [
+            "server/*",
+            "public/*"
+        ],
+        "ignore": [
+            "**/__tests__/**",
+            "*.test.js",
+            "*.spec.js"
+        ]
+    },
+    "jest": {
+        "testEnvironment": "node"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.4.1",
+        "jest": "^27.5.1"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "semi": true,
+        "singleQuote": true
+    }
 }
